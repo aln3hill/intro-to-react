@@ -12,25 +12,47 @@
 
        class HelloButton extends React.Component {
         sayHello(){
-          alert("Hello!");
+          alert("Hello");
         }
         sayGoodbye(){
           alert("Goodbye");
         }
 
+        constructor(props){
+           super(props);
+           this.state = {number:1}
+
+         }
+
+         addWeek(){
+           this.state.number = this.state.number +1
+           this.setState = this.state.number
+           console.log(this.state.number)
+         }
+
         render() {
           return (
             <div>
-              <h2>Greeting buttons</h2>
+              <h1>Greetings to {this.props.name}</h1>
+              <h2>Todays date is: {this.props.date.toLocaleDateString()} </h2>
+              //Aiming to update this number below through state and not just console log it in future version. 
+              <p>And it is the {this.state.number} week of May.</p>
               <button onClick={(e) => this.sayHello(e)}>Say Hello</button>
               <button onClick={(e) => this.sayGoodbye(e)}>Say Goodbye</button>
+              <button onClick={(e) => this.addWeek(e)}>Add week</button>
             </div>
           );
         }
       }
 
+      const todayDate = {
+        date: new Date()
+      }
+
       ReactDOM.render(
-        <HelloButton />, document.getElementById('app')
+        <HelloButton name="Amanda"
+        date ={todayDate.date}/>, document.getElementById('app')
+
       );
      </script>
   </body>
